@@ -2,6 +2,15 @@ package model;
 
 public class Rockford extends MotionElement{
 	
+	/**
+	 * @param int Rockford_Hp
+	 * @param int DiamondLeft
+	 * TurnRight, Function for Rockford turn right
+	 * Turnleft, Function for Rockford turn left
+	 * TurnUp, Function for Rockford turn up
+	 * TurnDown, Function for Rockford turn Down
+	 */
+	
 
 	
 	// classes to create

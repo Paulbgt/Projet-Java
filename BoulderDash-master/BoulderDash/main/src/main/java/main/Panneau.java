@@ -16,6 +16,19 @@ public class Panneau extends JPanel implements KeyListener{
 	String[][] tbl = new String[40][30];
 	ImageIcon tbl_image[][] =new ImageIcon[40][30];
 
+	
+	
+	
+	   /**
+  * the KeyReleased on the Keyboard   
+  *  
+  *
+  * @param Graphics g
+  * 
+  * Load gif in folder picture 
+  * 
+  * 
+  */
 	public void paintComponent(Graphics g){
 		
 		final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
@@ -48,21 +61,47 @@ public class Panneau extends JPanel implements KeyListener{
 		
 			
 			}
- 
 	
+	
+	
+	
+    /**
+     * the Key Pressed on the Keyboard   
+     * 
+     *
+     * @param KeyEvent e
+     * 
+     * 
+     */	
 		@Override
 		public void keyPressed(KeyEvent e) {
 			if(e.getKeyCode()==38){
 				Rockford.TurnRight(tbl,0,0);
 			}
 		}
-	
+		
+		   /**
+	     * the Key Released on the Keyboard   
+	     *  
+	     *
+	     * @param KeyEvent e
+	     * 
+	     * 
+	     */
 		@Override
 		public void keyReleased(KeyEvent e) {
 			// TODO Auto-generated method stub
 			
 		}
-	
+		
+		   /**
+	     * the Key Typed on the Keyboard   
+	     *  
+	     *
+	     * @param KeyEvent e
+	     * 
+	     * 
+	     */
 		@Override
 		public void keyTyped(KeyEvent e) {
 			}
