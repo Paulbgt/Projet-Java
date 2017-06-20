@@ -1,0 +1,26 @@
+	fenetre dans main
+	/**
+	 * Fenetre, this function allows to show a new window.  
+	 * @author Balentin's
+	 */
+
+	principal dans main
+	/**
+	 * 
+	 * @param args
+	 * main, this function instantiate the graphic window 
+	 * @author Balentin's
+	 */
+
+
+	rockford in model
+
+	/**
+	 * @param int Rockford_Hp
+	 * @param int DiamondLeft
+	 * TurnRight, Function for Rockford turn right
+	 * Turnleft, Function for Rockford turn left
+	 * TurnUp, Function for Rockford turn up
+	 * TurnDown, Function for Rockford turn Down
+	 */
+	
