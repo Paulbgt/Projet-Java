@@ -1,9 +1,8 @@
 package controller;
 
 import java.sql.SQLException;
-import java.util.List;
 
-import model.Example;
+
 import model.IModel;
 import view.IView;
 
@@ -37,23 +36,14 @@ public class ControllerFacade implements IController {
 
     /**
      * Start.
+     * @return 
      *
      * @throws SQLException
      *             the SQL exception
      */
-    public void start() throws SQLException {
-        this.getView().displayMessage(this.getModel().getExampleById(1).toString());
-
-        this.getView().displayMessage(this.getModel().getExampleByName("Example 2").toString());
-
-        final List<Example> examples = this.getModel().getAllExamples();
-        final StringBuilder message = new StringBuilder();
-        // a.append(" bar);
-        for (final Example example : examples) {
-            message.append(example);
-            message.append('\n');
-        }
-        this.getView().displayMessage(message.toString());
+    public String[] start(int select) throws SQLException {
+        final String[] examples = this.getModel().getAllExamples(select);
+        return examples;
     }
 
     /**

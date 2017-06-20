@@ -2,9 +2,9 @@ package model;
 
 import static org.junit.Assert.assertEquals;
 
+
 import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -19,20 +19,11 @@ public class ExampleTest {
     public static void tearDownAfterClass() throws Exception {
     }
 
-    @Before
-    public void setUp() throws Exception {
-        this.example = new Example(1, "Example test");
-    }
 
     @After
     public void tearDown() throws Exception {
     }
 
-    @Test
-    public void testGetId() {
-        final int expected = 1;
-        assertEquals(expected, this.example.getId());
-    }
 
     @Test
     public void testGetName() {

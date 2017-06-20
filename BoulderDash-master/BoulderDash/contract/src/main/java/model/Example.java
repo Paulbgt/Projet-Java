@@ -8,13 +8,10 @@ package model;
  */
 public class Example {
 
-    /** The id. */
-    private final int id;
 
-    /** The name. */
-    private String    name;
+	private String name;
 
-    /**
+	/**
      * Instantiates a new example.
      *
      * @param id
@@ -22,20 +19,11 @@ public class Example {
      * @param name
      *            the name
      */
-    public Example(final int id, final String name) {
+    public Example(final String name) {
         super();
-        this.id = id;
         this.name = name;
     }
 
-    /**
-     * Gets the id.
-     *
-     * @return the id
-     */
-    public int getId() {
-        return this.id;
-    }
 
     /**
      * Gets the name.
@@ -62,6 +50,6 @@ public class Example {
      */
     @Override
     public String toString() {
-        return this.getId() + " : " + this.getName();
+        return this.getName();
     }
 }
