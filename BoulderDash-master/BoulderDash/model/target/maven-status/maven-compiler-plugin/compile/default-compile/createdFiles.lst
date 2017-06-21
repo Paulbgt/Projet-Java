@@ -1,0 +1,10 @@
+model\Element.class
+model\dao\BoulderDashBDDConnector.class
+model\MotionElement.class
+model\dao\AbstractDAO.class
+model\Rockford.class
+model\Stone.class
+model\Diamond.class
+model\dao\ExampleDAO.class
+model\Monster.class
+model\ModelFacade.class

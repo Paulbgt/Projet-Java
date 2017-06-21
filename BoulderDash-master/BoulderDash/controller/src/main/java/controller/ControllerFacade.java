@@ -2,7 +2,6 @@ package controller;
 
 import java.sql.SQLException;
 
-
 import model.IModel;
 import view.IView;
 
@@ -33,6 +32,8 @@ public class ControllerFacade implements IController {
         this.view = view;
         this.model = model;
     }
+    
+    
 
     /**
      * Start.
@@ -41,9 +42,14 @@ public class ControllerFacade implements IController {
      * @throws SQLException
      *             the SQL exception
      */
-    public String[] start(int select) throws SQLException {
-        final String[] examples = this.getModel().getAllExamples(select);
-        return examples;
+    public String[][] start() throws SQLException {
+        String[] examples = new String[41];
+    	String[][] tbl = new String[40][30];
+		for(int x=2; x<42; x++){examples = this.getModel().getAllExamples(x);
+		for(int y=0; y<30; y++){tbl[x-2][y]=examples[y];}
+		}
+		
+        return tbl;
     }
 
     /**

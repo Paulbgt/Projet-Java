@@ -2,15 +2,6 @@ package model;
 
 public class Rockford extends MotionElement{
 	
-	/**
-	 * @param int Rockford_Hp
-	 * @param int DiamondLeft
-	 * TurnRight, Function for Rockford turn right
-	 * Turnleft, Function for Rockford turn left
-	 * TurnUp, Function for Rockford turn up
-	 * TurnDown, Function for Rockford turn Down
-	 */
-	
 
 	
 	// classes to create
@@ -28,7 +19,7 @@ public class Rockford extends MotionElement{
 				
 	}
 		
-		public static void TurnRight(String[][] map, int x, int y ){ 				// Methode for the rockford turn right 
+		public void TurnRight(String[][] map, int x, int y ){ 				// Methode for the rockford turn right 
 			
 			if (map[x + 1][y] == "T" || map[x + 1][y] == "B"){				//if at right it s a dirt or a background
 					map[x + 1][y] = "R";
@@ -56,7 +47,7 @@ public class Rockford extends MotionElement{
 		
 		
 		
-		public static void TurnLeft(String[][] map, int x, int y ){ 				// Methode for the rockford turn left 
+		public void TurnLeft(String[][] map, int x, int y ){ 				// Methode for the rockford turn left 
 			
 			if (map[x - 1][y] == "T" || map[x - 1][y] == "B"){				//if at left  it s a dirt or a background
 					map[x - 1][y] = "R";
@@ -84,7 +75,7 @@ public class Rockford extends MotionElement{
 		
 		
 		
-		public static void TurnUp(String[][] map, int x, int y ){ 				// Methode for the rockford turn up 
+		public void TurnUp(String[][] map, int x, int y ){ 				// Methode for the rockford turn up 
 			
 			if (map[x ][y-1] == "T" || map[x][y-1] == "B"){				//if at up  it s a dirt or a background
 					map[x][y-1] = "R";
@@ -110,7 +101,7 @@ public class Rockford extends MotionElement{
 			
 		}
 		
-		public static void TurnDown(String[][] map, int x, int y ){ 				// Methode for the rockford turn right 
+		public void TurnDown(String[][] map, int x, int y ){ 				// Methode for the rockford turn right 
 			
 			if (map[x ][y+1] == "T" || map[x][y+1] == "B"){				//if at right it s a dirt or a background
 					map[x][y-1] = "R";
