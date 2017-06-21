@@ -1,26 +1,60 @@
-	fenetre dans main
-	/**
-	 * Fenetre, this function allows to show a new window.  
-	 * @author Balentin's
-	 */
+Stone 
 
-	principal dans main
-	/**
-	 * 
-	 * @param args
-	 * main, this function instantiate the graphic window 
-	 * @author Balentin's
-	 */
+/**
+ * this Class run the behavior of the stone 
+ * @author paul
+ *
+ */
 
-
-	rockford in model
+StoneMoove
 
 	/**
-	 * @param int Rockford_Hp
-	 * @param int DiamondLeft
-	 * TurnRight, Function for Rockford turn right
-	 * Turnleft, Function for Rockford turn left
-	 * TurnUp, Function for Rockford turn up
-	 * TurnDown, Function for Rockford turn Down
+	* StoneMoove, this function run the behavior of the stone 
+	* @param map is the matrix where the map is stock
+ 	* @param x is the int that refer to the column
+ 	* @param y is the int that refer to the line
+ 	*/
+
+
+*********************************************************************************
+
+Monster
+
+/**
+ * monster Class run the movement of the monster
+ * @author Balentin's 
+ * 
+ */
+
+MonsterMoove
+
+	/**
+	 * MonsterMoove is the function that run the movement of the monster
+	 * @param map is the matrix where the map is stock
+	 * @param x is the int that refer to the column
+	 * @param y is the int that refer to the line
 	 */
-	
+
+
+MonsterExplosed
+
+	/**
+	 * MonsterExplosed is the function that manage the monster's reaction when they die
+	 * @param map is the matrix where the map is stock
+	 * @param x is the int that refer to the column
+	 * @param y is the int that refer to the line&
+	 */
+
+
+************************************************************************************
+
+Fenetre
+
+	/**
+	* Fenetre, this class allows to show a new window. 
+	* @author Balentin's
+	*/
+
+
+
+
