@@ -2,6 +2,8 @@ package controller;
 
 import java.sql.SQLException;
 
+
+
 import model.IModel;
 import view.IView;
 
@@ -14,11 +16,17 @@ import view.IView;
 public class ControllerFacade implements IController {
 
     /** The view. */
-    private final IView  view;
+    private IView  view;
 
     /** The model. */
-    private final IModel model;
+    private IModel model;
 
+    
+    
+    
+    String[][] tbl = new String[40][30];
+    
+    
     /**
      * Instantiates a new controller facade.
      *
@@ -27,12 +35,13 @@ public class ControllerFacade implements IController {
      * @param model
      *            the model
      */
-    public ControllerFacade(final IView view, final IModel model) {
-        super();
+
+	public ControllerFacade(final IView view,final IModel model) {
+		super();
         this.view = view;
         this.model = model;
-    }
-    
+		
+	}
     
 
     /**
@@ -44,7 +53,6 @@ public class ControllerFacade implements IController {
      */
     public String[][] start() throws SQLException {
         String[] examples = new String[41];
-    	String[][] tbl = new String[40][30];
 		for(int x=2; x<42; x++){examples = this.getModel().getAllExamples(x);
 		for(int y=0; y<30; y++){tbl[x-2][y]=examples[y];}
 		}
@@ -69,4 +77,17 @@ public class ControllerFacade implements IController {
     public IModel getModel() {
         return this.model;
     }
+
+
+
+	@Override
+	public void ControllerFacade(IView view, IModel model) {
+        this.view = view;
+        this.model = model;
+		
+	}
+
+
+
+	
 }
