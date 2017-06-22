@@ -2,8 +2,6 @@ package controller;
 
 import java.sql.SQLException;
 
-
-
 import model.IModel;
 import view.IView;
 
@@ -16,10 +14,10 @@ import view.IView;
 public class ControllerFacade implements IController {
 
     /** The view. */
-    private IView  view;
+    private final IView  view;
 
     /** The model. */
-    private IModel model;
+    private final IModel model;
 
     
     
@@ -35,13 +33,12 @@ public class ControllerFacade implements IController {
      * @param model
      *            the model
      */
-
-	public ControllerFacade(final IView view,final IModel model) {
-		super();
+    public ControllerFacade(final IView view, final IModel model) {
+        super();
         this.view = view;
         this.model = model;
-		
-	}
+    }
+    
     
 
     /**
@@ -77,17 +74,4 @@ public class ControllerFacade implements IController {
     public IModel getModel() {
         return this.model;
     }
-
-
-
-	@Override
-	public void ControllerFacade(IView view, IModel model) {
-        this.view = view;
-        this.model = model;
-		
-	}
-
-
-
-	
 }

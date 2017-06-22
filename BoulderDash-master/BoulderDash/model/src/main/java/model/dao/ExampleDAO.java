@@ -2,7 +2,6 @@ package model.dao;
 
 import java.sql.CallableStatement;
 
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

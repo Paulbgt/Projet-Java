@@ -1,7 +1,5 @@
 package main;
 
-import view.Fenetre;
-
 public class Principal {
 
 	public static void main(String[] args) {
