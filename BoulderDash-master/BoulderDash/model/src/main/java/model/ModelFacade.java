@@ -24,10 +24,14 @@ public class ModelFacade implements IModel {
      * (non-Javadoc)
      * @see model.IModel#getAllExamples()
      */
+    
     @Override
-    public String[] getAllExamples(int nbr) throws SQLException {
-        return ExampleDAO.getAllExamples(nbr);
+    public String[] getAllExamples(int nbr, String exemple) throws SQLException {
+        return ExampleDAO.getAllExamples(nbr, exemple);
     }
+
+
+
 
 
 

@@ -6,17 +6,24 @@ public class Rockford extends MotionElement{
 	
 	// classes to create
 	
-	private int Rockford_Hp;
-	
+	public int Rockford_Hp;
 	public int DiamondLeft;
+	public int posX;
+	public int posY;
 
 	// classes to create	
 				
 	
 	
 	
-	 public Rockford(){
-				
+
+
+	public Rockford(int Rockford_Hp,int DiamondLeft, int posX,int posY){
+			
+		this.Rockford_Hp = Rockford_Hp;
+		this.DiamondLeft = DiamondLeft;
+		this.posX = posX;
+		this.posY = posY;
 	}
 		
 		public void TurnRight(String[][] map, int x, int y ){ 				// Methode for the rockford turn right 
@@ -160,23 +167,21 @@ public class Rockford extends MotionElement{
 			}
 			
 			
+				 public int getPosX() {
+		return posX;
+	}
+
+	public void setPosX(int posX) {
+		this.posX = posX;
+	}
+
+	public int getPosY() {
+		return posY;
+	}
+
+	public void setPosY(int posY) {
+		this.posY = posY;
+	}
 			
-			public void ScanMap(String[][] map){
-				for(int y = 30 ; y != -1 ; y -- ){
-					for(int x = 40 ; x != -1 ; x -- ){
-						
-						if(map[x][y] == "S"){
-							Stone.StoneMoove(map, x, y);
-						}
-						
-						if(map[x][y] == "D"){
-							Diamond.DiamondMoove(map, x , y);
-						}
-						
-						if(map[x][y] == "M"){
-							Monster.MonsterMoove(map, x , y);
-						}
-					}
-				}
-			}
+			
 }

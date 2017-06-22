@@ -1,6 +1,6 @@
 package model;
 
-public class Diamond extends MotionElement{
+public class Diamond extends MotionElement implements IDiamondMoove{
 
 	
 	

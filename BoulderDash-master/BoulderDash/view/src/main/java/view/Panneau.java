@@ -14,12 +14,13 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import controller.ControllerFacade;
-import model.ModelFacade;
+
 
 public class Panneau extends JPanel implements ActionListener, KeyListener{
 	private static final long serialVersionUID = 1L;
-	final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
+	
+	// final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
+	
 	String[][] tbl = new String[40][30];
 	ImageIcon tbl_image[][] =new ImageIcon[40][30];
     ImageIcon img_wall = new ImageIcon("Pictures/mur.gif");
@@ -40,7 +41,8 @@ public class Panneau extends JPanel implements ActionListener, KeyListener{
 
 
 	
-	public Panneau(){
+	public Panneau(String[][] tbl){
+		this.tbl = tbl;
 		addKeyListener(this);
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
@@ -48,63 +50,63 @@ public class Panneau extends JPanel implements ActionListener, KeyListener{
 
 
 	public void paintComponent(Graphics g){
-		try{	
-			// Récupération du tbl
-			if(first==0){tbl=controller.start();first++;}
-			// Convertion du tableau de string en tableau d'image
+		// Récupération du tbl
+		//if(first==0){tbl=controller.start();first++;}
+		// Convertion du tableau de string en tableau d'image
+		for(int y=0;y<30;y++){
+			for(int x=0; x<40; x++){
+					tbl[x][y]=tbl[x][y].intern();
+					if(tbl[x][y]=="#"){tbl_image[x][y]=img_wall;}
+					else if(tbl[x][y]=="0"){tbl_image[x][y]=img_durt;}
+					else if(tbl[x][y]=="S"){tbl_image[x][y]=img_stone;Listx_stone.add(x);Listy_stone.add(y);}
+					else if(tbl[x][y]=="B"){tbl_image[x][y]=img_background;}
+					else if(tbl[x][y]=="D"){tbl_image[x][y]=img_diamond;Listx_diams.add(x);Listy_diams.add(y);}
+					else if(tbl[x][y]=="R"){tbl_image[x][y]=img_rockford;}
+					else{;}
+				}
+			}
+		
+	}
+		// Chute des pierre ( gravité )
+		
+		/*
+		int list=0;
+		while(list<8){
+		if(tbl[Listx_stone.get(list)][Listy_stone.get(list)+1]=="B"){tbl[Listx_stone.get(list)][Listy_stone.get(list)+1]="S";tbl[Listx_stone.get(list)][Listy_stone.get(list)]="B";Listy_stone.set(list,Listy_stone.get(list)+1);}
+		list++;
+		}
+		//chute de diaments
+		list=0;
+		while(list<4){
+		if(tbl[Listx_diams.get(list)][Listy_diams.get(list)+1]=="B"){tbl[Listx_diams.get(list)][Listy_diams.get(list)+1]="D";tbl[Listx_diams.get(list)][Listy_diams.get(list)]="B";Listy_diams.set(list,Listy_diams.get(list)+1);}
+		list++;
+		}
+		*/
+		// Affichage du tableau d'image
+		/*
 			for(int y=0;y<30;y++){
 				for(int x=0; x<40; x++){
-						tbl[x][y]=tbl[x][y].intern();
-						if(tbl[x][y]=="#"){tbl_image[x][y]=img_wall;}
-						else if(tbl[x][y]=="0"){tbl_image[x][y]=img_durt;}
-						else if(tbl[x][y]=="S"){tbl_image[x][y]=img_stone;Listx_stone.add(x);Listy_stone.add(y);}
-						else if(tbl[x][y]=="B"){tbl_image[x][y]=img_background;}
-						else if(tbl[x][y]=="D"){tbl_image[x][y]=img_diamond;Listx_diams.add(x);Listy_diams.add(y);}
-						else if(tbl[x][y]=="R"){tbl_image[x][y]=img_rockford;}
-						else{;}
-					}
+					g.drawImage(tbl_image[x][y].getImage(), x*32, y*32,32,32,this);
+					g.drawImage(img_rockford.getImage(), PositionX*32, PositionY*32,32,32,this);
 				}
-			// Chute des pierre ( gravité )
-			int list=0;
-			while(list<8){
-			if(tbl[Listx_stone.get(list)][Listy_stone.get(list)+1]=="B"){tbl[Listx_stone.get(list)][Listy_stone.get(list)+1]="S";tbl[Listx_stone.get(list)][Listy_stone.get(list)]="B";Listy_stone.set(list,Listy_stone.get(list)+1);}
-			list++;
-			}
-			//chute de diaments
-			list=0;
-			while(list<4){
-			if(tbl[Listx_diams.get(list)][Listy_diams.get(list)+1]=="B"){tbl[Listx_diams.get(list)][Listy_diams.get(list)+1]="D";tbl[Listx_diams.get(list)][Listy_diams.get(list)]="B";Listy_diams.set(list,Listy_diams.get(list)+1);}
-			list++;
 			}
 
-			// Affichage du tableau d'image
-			
-				for(int y=0;y<30;y++){
-					for(int x=0; x<40; x++){
-						g.drawImage(tbl_image[x][y].getImage(), x*32, y*32,32,32,this);
-						g.drawImage(img_rockford.getImage(), PositionX*32, PositionY*32,32,32,this);
-					}
-				}
-
-				//Detection de pierre et mur
-			if(etat==1){if(tbl[PositionX][PositionY]=="S" || tbl[PositionX][PositionY]=="#"){PositionY++;}}
-			if(etat==2){if(tbl[PositionX][PositionY]=="S" || tbl[PositionX][PositionY]=="#"){PositionY--;}}
-			if(etat==3){if(tbl[PositionX][PositionY]=="S" || tbl[PositionX][PositionY]=="#"){PositionX++;}}
-			if(etat==4){if(tbl[PositionX][PositionY]=="S" || tbl[PositionX][PositionY]=="#"){PositionX--;}}
-				//Detection de diament
-			if(etat==1){if(tbl[PositionX][PositionY]=="D" ){Cmpt_Diams++;System.out.println(Cmpt_Diams);etat=0;}}
-			if(etat==2){if(tbl[PositionX][PositionY]=="D" ){Cmpt_Diams++;System.out.println(Cmpt_Diams);etat=0;}}
-			if(etat==3){if(tbl[PositionX][PositionY]=="D" ){Cmpt_Diams++;System.out.println(Cmpt_Diams);etat=0;}}
-			if(etat==4){if(tbl[PositionX][PositionY]=="D" ){Cmpt_Diams++;System.out.println(Cmpt_Diams);etat=0;}}
-			g.drawImage(img_rockford.getImage(), PositionX*32, PositionY*32,32,32,this);
-			//Affichage du score
-			g.setColor(Color.RED);
-			g.setFont(new Font("arial", Font.BOLD,28));
-			g.drawString("Diams : "+Cmpt_Diams, 9,30);
-
-
-		}catch (SQLException e) {e.printStackTrace();}
-	  }
+			//Detection de pierre et mur
+		if(etat==1){if(tbl[PositionX][PositionY]=="S" || tbl[PositionX][PositionY]=="#"){PositionY++;}}
+		if(etat==2){if(tbl[PositionX][PositionY]=="S" || tbl[PositionX][PositionY]=="#"){PositionY--;}}
+		if(etat==3){if(tbl[PositionX][PositionY]=="S" || tbl[PositionX][PositionY]=="#"){PositionX++;}}
+		if(etat==4){if(tbl[PositionX][PositionY]=="S" || tbl[PositionX][PositionY]=="#"){PositionX--;}}
+			//Detection de diament
+		if(etat==1){if(tbl[PositionX][PositionY]=="D" ){Cmpt_Diams++;System.out.println(Cmpt_Diams);etat=0;}}
+		if(etat==2){if(tbl[PositionX][PositionY]=="D" ){Cmpt_Diams++;System.out.println(Cmpt_Diams);etat=0;}}
+		if(etat==3){if(tbl[PositionX][PositionY]=="D" ){Cmpt_Diams++;System.out.println(Cmpt_Diams);etat=0;}}
+		if(etat==4){if(tbl[PositionX][PositionY]=="D" ){Cmpt_Diams++;System.out.println(Cmpt_Diams);etat=0;}}
+		g.drawImage(img_rockford.getImage(), PositionX*32, PositionY*32,32,32,this);
+		//Affichage du score
+		g.setColor(Color.RED);
+		g.setFont(new Font("arial", Font.BOLD,28));
+		g.drawString("Diams : "+Cmpt_Diams, 9,30);
+	  
 	
 	public void Up(){ 	
 			tbl[PositionX][PositionY]="B";
@@ -140,7 +142,7 @@ public class Panneau extends JPanel implements ActionListener, KeyListener{
 
 		
 	}
-
+/*
 	@Override
 	public void keyReleased(KeyEvent e) {
 		int code = e.getKeyCode();
@@ -150,10 +152,31 @@ public class Panneau extends JPanel implements ActionListener, KeyListener{
 		if(code == KeyEvent.VK_RIGHT){right();}
 		
 	}
-
+*/
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		repaint();
+		
+	}
+
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
 		
 	}
 	
