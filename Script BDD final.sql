@@ -29,12 +29,63 @@ DELIMITER $$
 --
 -- Procédures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `findAllExamples` ()  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `findAllExamples1` ()  NO SQL
 SELECT*
-FROM example$$
+FROM example1$$
 
 DELIMITER ;
 
+DELIMITER $$
+--
+-- Procédures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `findAllExamples2` ()  NO SQL
+SELECT*
+FROM example2$$
+
+DELIMITER ;
+
+DELIMITER $$
+--
+-- Procédures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `findAllExamples3` ()  NO SQL
+SELECT*
+FROM example3$$
+
+DELIMITER ;
+
+DELIMITER $$
+--
+-- Procédures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `findAllExamples4` ()  NO SQL
+SELECT*
+FROM example4$$
+
+DELIMITER ;
+
+DELIMITER $$
+--
+-- Procédures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `findAllExamples4` ()  NO SQL
+SELECT*
+FROM example4$$
+
+DELIMITER ;
+
+
+
+DELIMITER $$
+--
+-- Procédures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `findAllExamples5` ()  NO SQL
+SELECT*
+FROM example5$$
+
+DELIMITER ;
 -- --------------------------------------------------------
 
 --
@@ -267,7 +318,7 @@ CREATE TABLE `example5` (
 --  `example`contents tables
 --
 
-INSERT INTO `example` (`id`, `cln1`, `cln2`, `cln3`, `cln4`, `cln5`, `cln6`, `cln7`, `cln8`, `cln9`, `cln10`, `cln11`, `cln12`, `cln13`, `cln14`, `cln15`, `cln16`, `cln17`, `cln18`, `cln19`, `cln20`, `cln21`, `cln22`, `cln23`, `cln24`, `cln25`, `cln26`, `cln27`, `cln28`, `cln29`, `cln30`, `cln31`, `cln32`, `cln33`, `cln34`, `cln35`, `cln36`, `cln37`, `cln38`, `cln39`, `cln40`) VALUES
+INSERT INTO `example1` (`id`, `cln1`, `cln2`, `cln3`, `cln4`, `cln5`, `cln6`, `cln7`, `cln8`, `cln9`, `cln10`, `cln11`, `cln12`, `cln13`, `cln14`, `cln15`, `cln16`, `cln17`, `cln18`, `cln19`, `cln20`, `cln21`, `cln22`, `cln23`, `cln24`, `cln25`, `cln26`, `cln27`, `cln28`, `cln29`, `cln30`, `cln31`, `cln32`, `cln33`, `cln34`, `cln35`, `cln36`, `cln37`, `cln38`, `cln39`, `cln40`) VALUES
 (1, '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'),
 (2, '#', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '#'),
 (3, '#', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', 'D', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '#'),
