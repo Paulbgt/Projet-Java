@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Observer;
 
@@ -24,9 +25,10 @@ public class Map {
 	
 	
 	
+	
 	public void ScanMap(){
-		for(int y = 30 ; y != -1 ; y -- ){
-			for(int x = 40 ; x != -1 ; x -- ){
+		for(int y = 29 ; y != -1 ; y -- ){
+			for(int x = 39 ; x != -1 ; x -- ){
 				
 				if(this.tbl[x][y] == "S"){
 					Stone.StoneMoove(this.tbl, x, y);

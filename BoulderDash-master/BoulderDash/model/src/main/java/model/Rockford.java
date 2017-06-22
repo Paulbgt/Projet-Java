@@ -37,7 +37,7 @@ public class Rockford extends MotionElement{
 			else if (map[x + 1][y] == "D" ){								// if at right it s a monster 
 					map[x + 1][y] = "R";
 					map[x][y] = "B";
-					//decDiamondLeft();
+					decDiamondLeft();
 					
 			}
 			
@@ -47,7 +47,7 @@ public class Rockford extends MotionElement{
 			
 			else if (map[x + 1][y] == "M"){ 								// if at right it s a monster 
 				map[x][y] = "R";
-				//decRockford_Hp();
+				decRockford_Hp();
 			}
 			
 		}
@@ -65,7 +65,7 @@ public class Rockford extends MotionElement{
 			else if (map[x - 1][y] == "D" ){								// if at left  it s a monster 
 					map[x - 1][y] = "R";
 					map[x][y] = "B";
-					//ecDiamondLeft();
+					decDiamondLeft();
 					
 			}
 			
@@ -75,7 +75,7 @@ public class Rockford extends MotionElement{
 			
 			else if (map[x - 1][y] == "M"){ 								// if at left  it s a monster 
 				map[x][y] = "R";
-				//decRockford_Hp();
+				decRockford_Hp();
 			}
 			
 		}
@@ -93,7 +93,7 @@ public class Rockford extends MotionElement{
 			else if (map[x][y-1] == "D" ){								// if at up  it s a monster 
 					map[x][y-1] = "R";
 					map[x][y] = "B";
-				//	decDiamondLeft();
+					decDiamondLeft();
 					
 			}
 			
@@ -103,7 +103,7 @@ public class Rockford extends MotionElement{
 			
 			else if (map[x][y-1] == "M"){ 								// if at right it s a monster 
 				map[x][y] = "R";
-				//decRockford_Hp();
+				decRockford_Hp();
 			}
 			
 		}
@@ -119,7 +119,7 @@ public class Rockford extends MotionElement{
 			else if (map[x][y+1] == "D" ){								// if at right it s a monster 
 					map[x][y+1] = "R";
 					map[x][y] = "B";
-				//	decDiamondLeft();
+					decDiamondLeft();
 					
 			}
 			
@@ -129,7 +129,7 @@ public class Rockford extends MotionElement{
 			
 			else if (map[x][y+1] == "M"){ 								// if at right it s a monster 
 				map[x][y] = "R";
-				//decRockford_Hp(); 
+				decRockford_Hp(); 
 			}
 			
 		}

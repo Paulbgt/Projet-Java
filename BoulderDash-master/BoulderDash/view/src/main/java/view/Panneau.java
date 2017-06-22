@@ -65,7 +65,12 @@ public class Panneau extends JPanel implements ActionListener, KeyListener{
 					else{;}
 				}
 			}
-		
+		for(int y=0;y<30;y++){
+				for(int x=0; x<40; x++){
+					g.drawImage(tbl_image[x][y].getImage(), x*32, y*32,32,32,this);
+					g.drawImage(img_rockford.getImage(), PositionX*32, PositionY*32,32,32,this);
+				}
+			}
 	}
 		// Chute des pierre ( gravité )
 		
@@ -84,12 +89,7 @@ public class Panneau extends JPanel implements ActionListener, KeyListener{
 		*/
 		// Affichage du tableau d'image
 		/*
-			for(int y=0;y<30;y++){
-				for(int x=0; x<40; x++){
-					g.drawImage(tbl_image[x][y].getImage(), x*32, y*32,32,32,this);
-					g.drawImage(img_rockford.getImage(), PositionX*32, PositionY*32,32,32,this);
-				}
-			}
+			
 
 			//Detection de pierre et mur
 		if(etat==1){if(tbl[PositionX][PositionY]=="S" || tbl[PositionX][PositionY]=="#"){PositionY++;}}
@@ -107,9 +107,33 @@ public class Panneau extends JPanel implements ActionListener, KeyListener{
 		g.setFont(new Font("arial", Font.BOLD,28));
 		g.drawString("Diams : "+Cmpt_Diams, 9,30);
 	  
+	*/int x;
+	int y;
 	
-	public void Up(){ 	
-			tbl[PositionX][PositionY]="B";
+	public void Up(){ 
+		x = PositionX;
+		y = PositionY;
+		if (tbl[x ][y-1] == "T" || tbl[x][y-1] == "B"){				//if at up  it s a dirt or a background
+			tbl[x][y-1] = "R";
+			tbl[x][y] = "B";
+			
+	}
+	
+	else if (tbl[x][PositionY-1] == "D" ){								// if at up  it s a monster 
+			tbl[x][y-1] = "R";
+			tbl[x][y] = "B";
+		//	decDiamondLeft();
+			
+	}
+	
+	else if (tbl[x][y-1] == "S" || tbl[x][y-1] == "W"){ 		//if at up  it s a stone or a Wall 
+			tbl[x][y] = "R";
+	}
+	
+	else if (tbl[x][y-1] == "M"){ 								// if at right it s a monster 
+		tbl[x][y] = "R";
+		//decRockford_Hp();
+	}
 			PositionY--;
 			etat=1;
 	}
@@ -129,7 +153,7 @@ public class Panneau extends JPanel implements ActionListener, KeyListener{
 		etat=4;
 	}
 	
-
+/*
 
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -154,30 +178,47 @@ public class Panneau extends JPanel implements ActionListener, KeyListener{
 	}
 */
 	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+	public void keyReleased(KeyEvent e) {
+		int code = e.getKeyCode();
+		if(code == KeyEvent.VK_UP){Up();}
+		if(code == KeyEvent.VK_DOWN){down();}
+		if(code == KeyEvent.VK_LEFT){left();}
+		if(code == KeyEvent.VK_RIGHT){right();
+		}
+		}
+	
+	
+	
+	/*
+	
+	public void keyReleased(KeyEvent e) {
+		int code = e.getKeyCode();
+		if(code == KeyEvent.VK_UP){player.TurnUp(map.getMap() , player.getPosX() , player.getPosY());}
+		if(code == KeyEvent.VK_DOWN){player.TurnDown(map.getMap() , player.getPosX() , player.getPosY());}
+		if(code == KeyEvent.VK_LEFT){player.TurnLeft(map.getMap() , player.getPosX() , player.getPosY());}
+		if(code == KeyEvent.VK_RIGHT){player.TurnRight(map.getMap() , player.getPosX() , player.getPosY());}
+	*/
+		
 	public void actionPerformed(ActionEvent e) {
 		repaint();
 		
 	}
 
 
-	@Override
-	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 }
