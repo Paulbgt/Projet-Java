@@ -49,10 +49,12 @@ public class ControllerFacade implements IController {
      *             the SQL exception
      */
     public String[][] start(String exemple) throws SQLException {
+
         String[] examples = new String[41];
 		for(int x=2; x<42; x++){examples = this.getModel().getAllExamples(x,exemple);
 		for(int y=0; y<30; y++){tbl[x-2][y]=examples[y];}
 		}
+
 		
         return tbl;
     }
