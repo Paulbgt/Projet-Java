@@ -14,8 +14,7 @@ public class Example {
 	/**
      * Instantiates a new example.
      *
-     * @param id
-     *            the id
+     *           
      * @param name
      *            the name
      */

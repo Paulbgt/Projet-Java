@@ -27,6 +27,7 @@ public abstract class ExampleDAO extends AbstractDAO {
      * Gets the all examples.
      *
      * @return the all examples
+     * @param exemple map number to load
      * @throws SQLException
      *             the SQL exception
      */
