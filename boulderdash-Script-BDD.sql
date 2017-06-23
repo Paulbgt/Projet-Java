@@ -7,6 +7,9 @@
 -- Version du serveur :  5.7.17-log
 -- Version de PHP :  5.6.25
 
+CREATE DATABASE boulderdash;
+USE boulderdash;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
