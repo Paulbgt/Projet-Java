@@ -6,24 +6,17 @@ public class Rockford extends MotionElement{
 	
 	// classes to create
 	
-	public int Rockford_Hp;
+	private int Rockford_Hp;
+	
 	public int DiamondLeft;
-	public int posX;
-	public int posY;
 
 	// classes to create	
 				
 	
 	
 	
-
-
-	public Rockford(int Rockford_Hp,int DiamondLeft, int posX,int posY){
-			
-		this.Rockford_Hp = Rockford_Hp;
-		this.DiamondLeft = DiamondLeft;
-		this.posX = posX;
-		this.posY = posY;
+	 public Rockford(){
+				
 	}
 		
 		public void TurnRight(String[][] map, int x, int y ){ 				// Methode for the rockford turn right 
@@ -37,7 +30,7 @@ public class Rockford extends MotionElement{
 			else if (map[x + 1][y] == "D" ){								// if at right it s a monster 
 					map[x + 1][y] = "R";
 					map[x][y] = "B";
-					decDiamondLeft();
+					//decDiamondLeft();
 					
 			}
 			
@@ -47,7 +40,7 @@ public class Rockford extends MotionElement{
 			
 			else if (map[x + 1][y] == "M"){ 								// if at right it s a monster 
 				map[x][y] = "R";
-				decRockford_Hp();
+				//decRockford_Hp();
 			}
 			
 		}
@@ -65,7 +58,7 @@ public class Rockford extends MotionElement{
 			else if (map[x - 1][y] == "D" ){								// if at left  it s a monster 
 					map[x - 1][y] = "R";
 					map[x][y] = "B";
-					decDiamondLeft();
+					//ecDiamondLeft();
 					
 			}
 			
@@ -75,7 +68,7 @@ public class Rockford extends MotionElement{
 			
 			else if (map[x - 1][y] == "M"){ 								// if at left  it s a monster 
 				map[x][y] = "R";
-				decRockford_Hp();
+				//decRockford_Hp();
 			}
 			
 		}
@@ -93,7 +86,7 @@ public class Rockford extends MotionElement{
 			else if (map[x][y-1] == "D" ){								// if at up  it s a monster 
 					map[x][y-1] = "R";
 					map[x][y] = "B";
-					decDiamondLeft();
+				//	decDiamondLeft();
 					
 			}
 			
@@ -103,7 +96,7 @@ public class Rockford extends MotionElement{
 			
 			else if (map[x][y-1] == "M"){ 								// if at right it s a monster 
 				map[x][y] = "R";
-				decRockford_Hp();
+				//decRockford_Hp();
 			}
 			
 		}
@@ -119,7 +112,7 @@ public class Rockford extends MotionElement{
 			else if (map[x][y+1] == "D" ){								// if at right it s a monster 
 					map[x][y+1] = "R";
 					map[x][y] = "B";
-					decDiamondLeft();
+				//	decDiamondLeft();
 					
 			}
 			
@@ -129,7 +122,7 @@ public class Rockford extends MotionElement{
 			
 			else if (map[x][y+1] == "M"){ 								// if at right it s a monster 
 				map[x][y] = "R";
-				decRockford_Hp(); 
+				//decRockford_Hp(); 
 			}
 			
 		}
@@ -167,21 +160,23 @@ public class Rockford extends MotionElement{
 			}
 			
 			
-				 public int getPosX() {
-		return posX;
-	}
-
-	public void setPosX(int posX) {
-		this.posX = posX;
-	}
-
-	public int getPosY() {
-		return posY;
-	}
-
-	public void setPosY(int posY) {
-		this.posY = posY;
-	}
 			
-			
+			public void ScanMap(String[][] map){
+				for(int y = 30 ; y != -1 ; y -- ){
+					for(int x = 40 ; x != -1 ; x -- ){
+						
+						if(map[x][y] == "S"){
+							Stone.StoneMoove(map, x, y);
+						}
+						
+						if(map[x][y] == "D"){
+							Diamond.DiamondMoove(map, x , y);
+						}
+						
+						if(map[x][y] == "M"){
+							Monster.MonsterMoove(map, x , y);
+						}
+					}
+				}
+			}
 }

@@ -15,15 +15,12 @@ import java.sql.SQLException;
 public abstract class ExampleDAO extends AbstractDAO {
 
     /** The sql all examples. */
-    private  static String sqlAllExamples   = "{call findAllExamples()}";
+    private static String sqlAllExamples   = "{call findAllExamples()}";
 
 
-
-	
-
-
-	/** The name column index. */
+    /** The name column index. */
     private static int    nameColumnIndex  = 2;
+
 
 
     /**
@@ -33,10 +30,11 @@ public abstract class ExampleDAO extends AbstractDAO {
      * @throws SQLException
      *             the SQL exception
      */
-    public static  String[] getAllExamples(final int nbr, final String exemple) throws SQLException {
-    	
-    	sqlAllExamples = "{call findAllExamples"+exemple+"()}";
+    public static String[] getAllExamples(final int nbr, final String exemple) throws SQLException {
     	nameColumnIndex=nbr;
+
+    	sqlAllExamples = "{call findAllExamples"+exemple+"()}";
+    	
     	int x=0;
         final String[] examples = new String[40];
         final CallableStatement callStatement = prepareCall(sqlAllExamples);
@@ -51,6 +49,4 @@ public abstract class ExampleDAO extends AbstractDAO {
         }
         return examples;
     }
-    
-
 }

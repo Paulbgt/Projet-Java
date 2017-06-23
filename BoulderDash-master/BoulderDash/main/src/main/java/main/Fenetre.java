@@ -5,15 +5,15 @@ import javax.swing.JFrame;
 public class Fenetre extends JFrame {
 	private static final long serialVersionUID = 1L;
 
-public Fenetre(){                
+public Fenetre(final String nb){                
 
-	Panneau s = new Panneau();
+	Panel s = new Panel(nb);
 	this.add(s);
     this.setTitle("Projet Java");
     this.setSize(1300, 1010);
     this.setLocationRelativeTo(null);               
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setContentPane(new Panneau());
+    this.setContentPane(new Panel(nb));
     this.setVisible(true);
 
   }     
