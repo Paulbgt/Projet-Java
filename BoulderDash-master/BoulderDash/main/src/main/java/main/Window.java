@@ -22,5 +22,9 @@ public Window(final String nb){
     this.setContentPane(new Panel(nb));
     this.setVisible(true);
 
-  }     
+  }
+
+	public void exit(){
+		System.exit(1);
+	}
 }

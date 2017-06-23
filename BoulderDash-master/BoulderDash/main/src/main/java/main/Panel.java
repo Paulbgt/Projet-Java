@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -16,6 +17,7 @@ import javax.swing.JPanel;
 import controller.ControllerFacade;
 import model.ModelFacade;
 import view.ViewFacade;
+
 
 
 
@@ -38,23 +40,26 @@ public class Panel extends JPanel implements ActionListener, KeyListener{
     ImageIcon img_monster = new ImageIcon("Pictures/monster.gif");
     ImageIcon img_monster2 = new ImageIcon("Pictures/monster2.gif");
     
-    // Position des rochers dans une liste
-	int size_stone=0, size_diams=0, state=0, first=0, Cmpt_Diams=0, PositionX=3, PositionY=3, Life=5;
+    // Initial position of the hero
+    int PositionX=3, PositionY=3;
+    //
+    int WinGame = 0;
+	int size_stone=0, size_diams=0, state=0, first=0, Cmpt_Diams=0, Life=2;
 
-	public String Nmap = "5";
+	public String Nmap = null;
 	
 	public Panel(final String nb){
 		if(nb=="1"  || nb=="2" || nb=="3" || nb=="4" || nb=="5"){
 		this.Nmap=nb;}
-		else{System.out.println("plot");this.Nmap=nb;}
+		else{this.Nmap=nb;}
 		addKeyListener(this);
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
 	}
-
 	
 	
-	/**
+	
+    	/**
 	 * paintComponent this function allows many functionality
 	 * convert the string table into picture table 
 	 * monter's Movement, this is random
@@ -69,15 +74,18 @@ public class Panel extends JPanel implements ActionListener, KeyListener{
 	 */
 	public void paintComponent(Graphics g){
 		try{	
+			// Lists containing the position (x and y) of the diamonds, rocks and monsters
 		    ArrayList<Integer> Listx_stone = new ArrayList<Integer>();
 		    ArrayList<Integer> Listy_stone = new ArrayList<Integer>();
 		    ArrayList<Integer> Listx_diams = new ArrayList<Integer>();
 		    ArrayList<Integer> Listy_diams = new ArrayList<Integer>();
 		    ArrayList<Integer> Listx_monster = new ArrayList<Integer>();
 		    ArrayList<Integer> Listy_monster = new ArrayList<Integer>();
-			// Récupération du tbl
+		    ArrayList<Integer> Listx_monster2 = new ArrayList<Integer>();
+		    ArrayList<Integer> Listy_monster2 = new ArrayList<Integer>();
+			// Retrieving the String table from the controller
 			if(first==0){tbl=controller.start(Nmap);first++;}
-			// Convertion du tableau de string en tableau d'image
+			// Converting the string array to an image table
 			for(int y=0;y<30;y++){
 				for(int x=0; x<40; x++){
 						tbl[x][y]=tbl[x][y].intern();
@@ -87,38 +95,40 @@ public class Panel extends JPanel implements ActionListener, KeyListener{
 						else if(tbl[x][y]=="B"){tbl_image[x][y]=img_background;}
 						else if(tbl[x][y]=="D"){tbl_image[x][y]=img_diamond;Listx_diams.add(x);Listy_diams.add(y);}
 						else if(tbl[x][y]=="M"){tbl_image[x][y]=img_monster;Listx_monster.add(x);Listy_monster.add(y);}
-						else if(tbl[x][y]=="M2"){tbl_image[x][y]=img_monster;}
-						else{tbl_image[x][y]=img_monster2;}
+						else if(tbl[x][y]=="M2"){tbl_image[x][y]=img_monster2;Listx_monster2.add(x);Listy_monster2.add(y);}
+						else{System.out.println("Unknown character !");;}
 					}
+				
 				}
 			
-			// Mouvement du monstre
+			
+			// Monster Movements
 			int list=0;
 			int size_monster=Listx_monster.size();
 			int move=0;
 			
-				// Génération d'un mouvement aléatoire
+				// Generating a random movement
 			while(list<size_monster){
 			move = (int) (Math.random() * 5 );
 			
-				// Tuer le monstre 
+				// Kill the Monster 1
 			if(move==3){if(tbl[Listx_monster.get(list)][Listy_monster.get(list)-1]=="S" || tbl[Listx_monster.get(list)][Listy_monster.get(list)-1]=="D"){tbl[Listx_monster.get(list)][Listy_monster.get(list)]="D";}}
-				// Le monstre va en bas
+				// Monster 1 goes down
 			if(move==1){if(tbl[Listx_monster.get(list)][Listy_monster.get(list)+1]=="B"){
 				tbl[Listx_monster.get(list)][Listy_monster.get(list)+1]="M";
 				tbl[Listx_monster.get(list)][Listy_monster.get(list)]="B";
 				Listy_monster.set(list, Listy_monster.get(list)+1);}}
-				// Le monstre va a droite
+				// Monster 1 goes right
 			if(move==2){if(tbl[Listx_monster.get(list)+1][Listy_monster.get(list)]=="B"){
 				tbl[Listx_monster.get(list)+1][Listy_monster.get(list)]="M";
 				tbl[Listx_monster.get(list)][Listy_monster.get(list)]="B";
 				Listx_monster.set(list, Listx_monster.get(list)+1);}}
-				// Le monstre va en haut
+				// Monster 1 goes up
 			if(move==3){if(tbl[Listx_monster.get(list)][Listy_monster.get(list)-1]=="B"){
 				tbl[Listx_monster.get(list)][Listy_monster.get(list)-1]="M";
 				tbl[Listx_monster.get(list)][Listy_monster.get(list)]="B";
 				Listy_monster.set(list, Listy_monster.get(list)-1);}}
-				// Le monstre va a gauche
+				// Monster 1 goes left
 			if(move==4){if(tbl[Listx_monster.get(list)-1][Listy_monster.get(list)]=="B"){
 				tbl[Listx_monster.get(list)-1][Listy_monster.get(list)]="M";
 				tbl[Listx_monster.get(list)][Listy_monster.get(list)]="B";
@@ -126,8 +136,22 @@ public class Panel extends JPanel implements ActionListener, KeyListener{
 			list++;
 			}
 			
-			// Pousser les pierres 
-				// à droite
+			// Movement of the Monster 2 (he deposits a stone before moving randomly in the map when the player goes to the right)
+			if(state==4){
+			int size_monster2=Listx_monster2.size();
+			int moveX=0;
+			int moveY=0;
+			list=0;
+			while(list<size_monster2){
+			moveX = (int) (Math.random() * 39 );
+			moveY = (int) (Math.random() * 29 );
+			if(moveX!=0 && moveY!=0 ){
+				tbl[Listx_monster2.get(list)][Listy_monster2.get(list)]="S";
+				tbl[moveX][moveY]="M2";Listx_monster2.set(list, moveX);Listy_monster2.set(list, moveY);}list++;}}
+
+			
+			// Push the stones
+				// to the right
 			list=0;
 			if(state==4){if(tbl[PositionX][PositionY]=="S" && tbl[PositionX+1][PositionY]=="B"){
 				tbl[PositionX][PositionY]="B";
@@ -136,7 +160,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener{
 				Listx_stone.set(list,Listx_stone.get(list)+1);
 				}
 			}
-				// à gauche
+				// to the left
 			list=0;
 			if(state==3){if(tbl[PositionX][PositionY]=="S" && tbl[PositionX-1][PositionY]=="B"){
 				tbl[PositionX][PositionY]="B";
@@ -147,27 +171,27 @@ public class Panel extends JPanel implements ActionListener, KeyListener{
 			}
 				
 
-			//Detection de pierre et mur
+			// Stop the collision against rocks and walls
 			if(state==1){if(tbl[PositionX][PositionY]=="S" || tbl[PositionX][PositionY]=="#"){PositionY++;}}
 			if(state==2){if(tbl[PositionX][PositionY]=="S" || tbl[PositionX][PositionY]=="#"){PositionY--;}}
 			if(state==3){if(tbl[PositionX][PositionY]=="S" || tbl[PositionX][PositionY]=="#"){PositionX++;}}
 			if(state==4){if(tbl[PositionX][PositionY]=="S" || tbl[PositionX][PositionY]=="#"){PositionX--;}}
 			
 
-			// Cascade
+			// Falling stones in cascade
 			size_stone=Listx_stone.size();
 			size_diams=Listx_diams.size();
 			
 			while(list<size_stone){
 			if(tbl[Listx_stone.get(list)][Listy_stone.get(list)+1]=="S"){
-				// regarde en bas à droite
+				// Look at the bottom right
 				if(tbl[Listx_stone.get(list)+1][Listy_stone.get(list)+1]=="B"){
 					tbl[Listx_stone.get(list)][Listy_stone.get(list)]="B";
 					tbl[Listx_stone.get(list)+1][Listy_stone.get(list)+1]="S";
 					Listx_stone.set(list,Listx_stone.get(list)+1);
 					Listy_stone.set(list,Listy_stone.get(list)+1);
 					}
-				// regarde en bas à gauche
+				// Look at the bottom left
 				if(tbl[Listx_stone.get(list)-1][Listy_stone.get(list)+1]=="B"){
 					tbl[Listx_stone.get(list)][Listy_stone.get(list)]="B";
 					tbl[Listx_stone.get(list)-1][Listy_stone.get(list)+1]="S";
@@ -179,7 +203,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener{
 			}
 
 			
-			// Chute des pierres ( gravité )
+			// Falling stones (gravity)
 			list=0;
 			while(list<size_stone){
 			if(tbl[Listx_stone.get(list)][Listy_stone.get(list)+1]=="B"){
@@ -189,13 +213,13 @@ public class Panel extends JPanel implements ActionListener, KeyListener{
 			list++;
 			}
 			
-			//Detection de diament
+			// Detection of diamond / collection
 			if(state==1 || state==2 || state==3 || state==4){if(tbl[PositionX][PositionY]=="D"){state=0;Cmpt_Diams++;}}
 			// Perte de vie
 			if(state==1 || state==2 || state==3 || state==4){if(tbl[PositionX][PositionY]=="M" || tbl[PositionX][PositionY]=="S"){Life--;state=0;}}
 
 
-			//chute de diaments
+			// Falling diamond
 			for(int list1=0;list1<size_diams;list1++){
 			if(tbl[Listx_diams.get(list1)][Listy_diams.get(list1)+1]=="B"){
 				tbl[Listx_diams.get(list1)][Listy_diams.get(list1)]="B";
@@ -204,7 +228,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener{
 			}
 
 
-			// Affichage du tableau d'image
+			// Display of the picture table
 			
 				for(int y=0;y<30;y++){
 					for(int x=0; x<40; x++){
@@ -212,23 +236,68 @@ public class Panel extends JPanel implements ActionListener, KeyListener{
 						g.drawImage(img_rockford.getImage(), PositionX*32, PositionY*32,32,32,this);
 					}
 				}
+				
+			// Finished Games
+				
+				size_diams=Listx_diams.size();
+				
+				
+				
+				if (WinGame == 1){
+
+					Thread.sleep(3000);
+					String nb="0";
+					Window windo = new Window(nb);
+					windo.exit();
+			}
+						// YOU WIN !
+				if(size_diams==0){
+					for(int y=0;y<30;y++){
+						for(int x=0; x<40; x++){
+							g.drawImage(img_durt.getImage(), x*32, y*32,32,32,this);}}
+					
+						WinGame = 1;	
+							g.setColor(Color.BLUE);
+							g.setFont(new Font("arial", Font.BOLD,100));
+							g.drawString("YOU WIN !", 350,450);
+					}
+					// YOU LOOSE !
+				if(Life==0){
+					for(int y=0;y<30;y++){
+						for(int x=0; x<40; x++){
+							g.drawImage(img_durt.getImage(), x*32, y*32,32,32,this);}}
+					
+						WinGame = 1;	
+							g.setColor(Color.BLUE);
+							g.setFont(new Font("arial", Font.BOLD,100));
+							g.drawString("YOU LOOSE !", 350,450);
+					}
+
+
 		
-			// Affichage de rockford
+			// Hero Display
 				
 			g.drawImage(img_rockford.getImage(), PositionX*32, PositionY*32,32,32,this);
 			
-			//Affichage du score
+			// Score display
 			g.setColor(Color.RED);
 			g.setFont(new Font("arial", Font.BOLD,28));
 			g.drawString("Diams : "+Cmpt_Diams, 9,30);
-			// Affichage de la vie
+			// Life display
 			g.setColor(Color.RED);
 			g.setFont(new Font("arial", Font.BOLD,28));
 			g.drawString("Life : "+Life, 200,30);
+			
+			state=0;
+			
 
-
-		}catch (SQLException e) {e.printStackTrace();}
+		}catch (SQLException e) {e.printStackTrace();} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	  }
+	
+	// Different player movements
 	
 	public void Up(){ 	
 			tbl[PositionX][PositionY]="B";
@@ -252,17 +321,16 @@ public class Panel extends JPanel implements ActionListener, KeyListener{
 	}
 	
 
-
+	// Detecting a key press
+	
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-
-		
+		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -273,9 +341,9 @@ public class Panel extends JPanel implements ActionListener, KeyListener{
 		if(code == KeyEvent.VK_LEFT){left();}
 		if(code == KeyEvent.VK_RIGHT){right();}	
 	}
+	// Display the map
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		repaint();	
 	}
-
 }
