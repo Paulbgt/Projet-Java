@@ -39,8 +39,8 @@
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  	<strong class="jxr_keyword">final</strong> <a href="../controller/ControllerFacade.html">ControllerFacade</a> controller = <strong class="jxr_keyword">new</strong> <a href="../controller/ControllerFacade.html">ControllerFacade</a>(<strong class="jxr_keyword">new</strong> <a href="../view/ViewFacade.html">ViewFacade</a>(), <strong class="jxr_keyword">new</strong> ModelFacade());
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  	String[][] tbl = <strong class="jxr_keyword">new</strong> String[40][30];
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  	ImageIcon tbl_image[][] =<strong class="jxr_keyword">new</strong> ImageIcon[40][30];
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>      ImageIcon img_wall = <strong class="jxr_keyword">new</strong> ImageIcon(<span class="jxr_string">"Pictures/mur.gif"</span>);
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>      ImageIcon img_durt = <strong class="jxr_keyword">new</strong> ImageIcon(<span class="jxr_string">"Pictures/pierre.gif"</span>);
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>      ImageIcon img_wall = <strong class="jxr_keyword">new</strong> ImageIcon(<span class="jxr_string">"Pictures/wall.gif"</span>);
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>      ImageIcon img_dirt = <strong class="jxr_keyword">new</strong> ImageIcon(<span class="jxr_string">"Pictures/dirt.gif"</span>);
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>      ImageIcon img_rockford = <strong class="jxr_keyword">new</strong> ImageIcon(<span class="jxr_string">"Pictures/rockford.gif"</span>);
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>      ImageIcon img_stone = <strong class="jxr_keyword">new</strong> ImageIcon(<span class="jxr_string">"Pictures/stone.gif"</span>);
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>      ImageIcon img_background = <strong class="jxr_keyword">new</strong> ImageIcon(<span class="jxr_string">"Pictures/fond.gif"</span>);
@@ -98,7 +98,7 @@
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>  				<strong class="jxr_keyword">for</strong>(<strong class="jxr_keyword">int</strong> x=0; x&lt;40; x++){
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  						tbl[x][y]=tbl[x][y].intern();
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>  						<strong class="jxr_keyword">if</strong>(tbl[x][y]==<span class="jxr_string">"#"</span>){tbl_image[x][y]=img_wall;}
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>  						<strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong>(tbl[x][y]==<span class="jxr_string">"0"</span>){tbl_image[x][y]=img_durt;}
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>  						<strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong>(tbl[x][y]==<span class="jxr_string">"0"</span>){tbl_image[x][y]=img_dirt;}
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>  						<strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong>(tbl[x][y]==<span class="jxr_string">"S"</span>){tbl_image[x][y]=img_stone;Listx_stone.add(x);Listy_stone.add(y);}
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  						<strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong>(tbl[x][y]==<span class="jxr_string">"B"</span>){tbl_image[x][y]=img_background;}
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>  						<strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong>(tbl[x][y]==<span class="jxr_string">"D"</span>){tbl_image[x][y]=img_diamond;Listx_diams.add(x);Listy_diams.add(y);}
@@ -191,7 +191,7 @@
 <a class="jxr_linenumber" name="L183" href="#L183">183</a> 			size_diams=Listx_diams.size();
 <a class="jxr_linenumber" name="L184" href="#L184">184</a> 			
 <a class="jxr_linenumber" name="L185" href="#L185">185</a> 			<strong class="jxr_keyword">while</strong>(list&lt;size_stone){
-<a class="jxr_linenumber" name="L186" href="#L186">186</a> 			<strong class="jxr_keyword">if</strong>(tbl[Listx_stone.get(list)][Listy_stone.get(list)+1]==<span class="jxr_string">"S"</span>){
+<a class="jxr_linenumber" name="L186" href="#L186">186</a> 			<strong class="jxr_keyword">if</strong>(tbl[Listx_stone.get(list)][Listy_stone.get(list)+1]==<span class="jxr_string">"S"</span> || tbl[Listx_stone.get(list)][Listy_stone.get(list)+1]==<span class="jxr_string">"D"</span>){
 <a class="jxr_linenumber" name="L187" href="#L187">187</a> 				<em class="jxr_comment">// Look at the bottom right</em>
 <a class="jxr_linenumber" name="L188" href="#L188">188</a> 				<strong class="jxr_keyword">if</strong>(tbl[Listx_stone.get(list)+1][Listy_stone.get(list)+1]==<span class="jxr_string">"B"</span>){
 <a class="jxr_linenumber" name="L189" href="#L189">189</a> 					tbl[Listx_stone.get(list)][Listy_stone.get(list)]=<span class="jxr_string">"B"</span>;
@@ -262,7 +262,7 @@
 <a class="jxr_linenumber" name="L254" href="#L254">254</a> 				<strong class="jxr_keyword">if</strong>(size_diams==0){
 <a class="jxr_linenumber" name="L255" href="#L255">255</a> 					<strong class="jxr_keyword">for</strong>(<strong class="jxr_keyword">int</strong> y=0;y&lt;30;y++){
 <a class="jxr_linenumber" name="L256" href="#L256">256</a> 						<strong class="jxr_keyword">for</strong>(<strong class="jxr_keyword">int</strong> x=0; x&lt;40; x++){
-<a class="jxr_linenumber" name="L257" href="#L257">257</a> 							g.drawImage(img_durt.getImage(), x*32, y*32,32,32,<strong class="jxr_keyword">this</strong>);}}
+<a class="jxr_linenumber" name="L257" href="#L257">257</a> 							g.drawImage(img_dirt.getImage(), x*32, y*32,32,32,<strong class="jxr_keyword">this</strong>);}}
 <a class="jxr_linenumber" name="L258" href="#L258">258</a> 					
 <a class="jxr_linenumber" name="L259" href="#L259">259</a> 						WinGame = 1;	
 <a class="jxr_linenumber" name="L260" href="#L260">260</a> 							g.setColor(Color.BLUE);
@@ -273,7 +273,7 @@
 <a class="jxr_linenumber" name="L265" href="#L265">265</a> 				<strong class="jxr_keyword">if</strong>(Life==0){
 <a class="jxr_linenumber" name="L266" href="#L266">266</a> 					<strong class="jxr_keyword">for</strong>(<strong class="jxr_keyword">int</strong> y=0;y&lt;30;y++){
 <a class="jxr_linenumber" name="L267" href="#L267">267</a> 						<strong class="jxr_keyword">for</strong>(<strong class="jxr_keyword">int</strong> x=0; x&lt;40; x++){
-<a class="jxr_linenumber" name="L268" href="#L268">268</a> 							g.drawImage(img_durt.getImage(), x*32, y*32,32,32,<strong class="jxr_keyword">this</strong>);}}
+<a class="jxr_linenumber" name="L268" href="#L268">268</a> 							g.drawImage(img_dirt.getImage(), x*32, y*32,32,32,<strong class="jxr_keyword">this</strong>);}}
 <a class="jxr_linenumber" name="L269" href="#L269">269</a> 					
 <a class="jxr_linenumber" name="L270" href="#L270">270</a> 						WinGame = 1;	
 <a class="jxr_linenumber" name="L271" href="#L271">271</a> 							g.setColor(Color.BLUE);

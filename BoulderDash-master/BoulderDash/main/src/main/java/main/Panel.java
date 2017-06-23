@@ -31,8 +31,8 @@ public class Panel extends JPanel implements ActionListener, KeyListener{
 	final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
 	String[][] tbl = new String[40][30];
 	ImageIcon tbl_image[][] =new ImageIcon[40][30];
-    ImageIcon img_wall = new ImageIcon("Pictures/mur.gif");
-    ImageIcon img_durt = new ImageIcon("Pictures/pierre.gif");
+    ImageIcon img_wall = new ImageIcon("Pictures/wall.gif");
+    ImageIcon img_dirt = new ImageIcon("Pictures/dirt.gif");
     ImageIcon img_rockford = new ImageIcon("Pictures/rockford.gif");
     ImageIcon img_stone = new ImageIcon("Pictures/stone.gif");
     ImageIcon img_background = new ImageIcon("Pictures/fond.gif");
@@ -90,7 +90,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener{
 				for(int x=0; x<40; x++){
 						tbl[x][y]=tbl[x][y].intern();
 						if(tbl[x][y]=="#"){tbl_image[x][y]=img_wall;}
-						else if(tbl[x][y]=="0"){tbl_image[x][y]=img_durt;}
+						else if(tbl[x][y]=="0"){tbl_image[x][y]=img_dirt;}
 						else if(tbl[x][y]=="S"){tbl_image[x][y]=img_stone;Listx_stone.add(x);Listy_stone.add(y);}
 						else if(tbl[x][y]=="B"){tbl_image[x][y]=img_background;}
 						else if(tbl[x][y]=="D"){tbl_image[x][y]=img_diamond;Listx_diams.add(x);Listy_diams.add(y);}
@@ -183,7 +183,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener{
 			size_diams=Listx_diams.size();
 			
 			while(list<size_stone){
-			if(tbl[Listx_stone.get(list)][Listy_stone.get(list)+1]=="S"){
+			if(tbl[Listx_stone.get(list)][Listy_stone.get(list)+1]=="S" || tbl[Listx_stone.get(list)][Listy_stone.get(list)+1]=="D"){
 				// Look at the bottom right
 				if(tbl[Listx_stone.get(list)+1][Listy_stone.get(list)+1]=="B"){
 					tbl[Listx_stone.get(list)][Listy_stone.get(list)]="B";
@@ -254,7 +254,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener{
 				if(size_diams==0){
 					for(int y=0;y<30;y++){
 						for(int x=0; x<40; x++){
-							g.drawImage(img_durt.getImage(), x*32, y*32,32,32,this);}}
+							g.drawImage(img_dirt.getImage(), x*32, y*32,32,32,this);}}
 					
 						WinGame = 1;	
 							g.setColor(Color.BLUE);
@@ -265,7 +265,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener{
 				if(Life==0){
 					for(int y=0;y<30;y++){
 						for(int x=0; x<40; x++){
-							g.drawImage(img_durt.getImage(), x*32, y*32,32,32,this);}}
+							g.drawImage(img_dirt.getImage(), x*32, y*32,32,32,this);}}
 					
 						WinGame = 1;	
 							g.setColor(Color.BLUE);
