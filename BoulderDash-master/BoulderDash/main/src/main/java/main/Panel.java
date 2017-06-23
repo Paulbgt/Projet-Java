@@ -17,6 +17,13 @@ import controller.ControllerFacade;
 import model.ModelFacade;
 import view.ViewFacade;
 
+
+
+/**
+ * Panneau, this class allows to associate map's alphanumeric character to their gif
+ * @author Group 5 Arras
+ * @version 1.0
+ */
 public class Panel extends JPanel implements ActionListener, KeyListener{
 	private static final long serialVersionUID = 1L;
 	final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
@@ -45,7 +52,21 @@ public class Panel extends JPanel implements ActionListener, KeyListener{
 		setFocusTraversalKeysEnabled(false);
 	}
 
-
+	
+	
+	/**
+	 * paintComponent this function allows many functionality
+	 * convert the string table into picture table 
+	 * monter's Movement, this is random
+	 * kill monster
+	 * push stone in any direciton
+	 * detection of stone, diamond and wall
+	 * diamond and stone's gravity
+	 * display the different element, rockford, score  ans life
+	 * 
+	 * 
+	 * 
+	 */
 	public void paintComponent(Graphics g){
 		try{	
 		    ArrayList<Integer> Listx_stone = new ArrayList<Integer>();

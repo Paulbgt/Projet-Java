@@ -1,12 +1,19 @@
 package model;
 
+
+/**
+ * <h1>The Class ExampleDAO.</h1>
+ *
+ * @author Group 5 Arras
+ * @version 1.0
+ */
 public class Rockford extends MotionElement{
 	
 
 	
 	// classes to create
 	
-	private int Rockford_Hp;
+	public int Rockford_Hp;
 	
 	public int DiamondLeft;
 
@@ -14,11 +21,22 @@ public class Rockford extends MotionElement{
 				
 	
 	
-	
+    /**
+     * constructor Rockford
+     *
+     */
 	 public Rockford(){
 				
 	}
 		
+	 
+	    /**
+	     * Function for Rockford turn right
+	     *
+	     * @param map the matrix who contains the map 
+	     * @param x where we are in the map 
+	     * @param y where we are in the map
+	     */		
 		public void TurnRight(String[][] map, int x, int y ){ 				// Methode for the rockford turn right 
 			
 			if (map[x + 1][y] == "T" || map[x + 1][y] == "B"){				//if at right it s a dirt or a background
@@ -46,7 +64,13 @@ public class Rockford extends MotionElement{
 		}
 		
 		
-		
+	    /**
+	     * Function for Rockford turn left
+	     *
+	     * @param map the matrix who contains the map 
+	     * @param x where we are in the map 
+	     * @param y where we are in the map
+	     */
 		public void TurnLeft(String[][] map, int x, int y ){ 				// Methode for the rockford turn left 
 			
 			if (map[x - 1][y] == "T" || map[x - 1][y] == "B"){				//if at left  it s a dirt or a background
@@ -74,7 +98,13 @@ public class Rockford extends MotionElement{
 		}
 		
 		
-		
+	    /**
+	     * Function for Rockford turn top
+	     *
+	     * @param map the matrix who contains the map 
+	     * @param x where we are in the map 
+	     * @param y where we are in the map
+	     */
 		public void TurnUp(String[][] map, int x, int y ){ 				// Methode for the rockford turn up 
 			
 			if (map[x ][y-1] == "T" || map[x][y-1] == "B"){				//if at up  it s a dirt or a background
@@ -101,6 +131,14 @@ public class Rockford extends MotionElement{
 			
 		}
 		
+		
+	    /**
+	     * Function for Rockford turn bot
+	     *
+	     * @param map the matrix who contains the map 
+	     * @param x where we are in the map 
+	     * @param y where we are in the map
+	     */
 		public void TurnDown(String[][] map, int x, int y ){ 				// Methode for the rockford turn right 
 			
 			if (map[x ][y+1] == "T" || map[x][y+1] == "B"){				//if at right it s a dirt or a background
@@ -131,52 +169,39 @@ public class Rockford extends MotionElement{
 		
 		
 		
-		
-				public int getRockford_Hp() {
-						return Rockford_Hp;
-					}
-			
-				public void setRockford_Hp(int rockford_Hp) {
-						Rockford_Hp = rockford_Hp;
-					}
-				
-				public void decRockford_Hp() {
-					Rockford_Hp -= Rockford_Hp;
+
+	
+			public int getRockford_Hp() {
+					return Rockford_Hp;
 				}
-				
-				
-				
 			
-				public int getDiamondLeft() {
-						return DiamondLeft;
-					}
+
+			public void setRockford_Hp(int rockford_Hp) {
+					Rockford_Hp = rockford_Hp;
+				}
 			
+
+			public void decRockford_Hp() {
+				Rockford_Hp -= Rockford_Hp;
+			}
+				
+				
+				
+
+			public int getDiamondLeft() {
+					return DiamondLeft;
+				}
+			
+
 			public void setDiamondLeft(int diamondLeft) {
 						DiamondLeft = diamondLeft;
 					}
 			
+
 			public void decDiamondLeft() {
 				DiamondLeft -= DiamondLeft;
 			}
 			
 			
 			
-			public void ScanMap(String[][] map){
-				for(int y = 30 ; y != -1 ; y -- ){
-					for(int x = 40 ; x != -1 ; x -- ){
-						
-						if(map[x][y] == "S"){
-							Stone.StoneMoove(map, x, y);
-						}
-						
-						if(map[x][y] == "D"){
-							Diamond.DiamondMoove(map, x , y);
-						}
-						
-						if(map[x][y] == "M"){
-							Monster.MonsterMoove(map, x , y);
-						}
-					}
-				}
-			}
 }

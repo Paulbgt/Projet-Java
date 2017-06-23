@@ -1,11 +1,26 @@
 package model;
 
+/**
+ * <h1>The Class ExampleDAO.</h1>
+ * monster Class run the movement of the monster
+ * @author Group 5 Arras
+ * @version 1.0
+ */
 public class Monster extends MotionElement{
 	
 	Monster(){
 		
 	}
 	
+	
+	
+
+	/**
+	 * MonsterMoove is the function that run the movement of the monster
+	 * @param map is the matrix where the map is stock
+	 * @param x is the int that refer to the column
+	 * @param y is the int that refer to the line
+	 */
 	public static void MonsterMoove(String[][] map, int x, int y){
 		
 		
@@ -27,7 +42,12 @@ public class Monster extends MotionElement{
 		
 	}
 	
-	
+	/**
+	 * MonsterExplosed is the function that manage the monster's reaction when they die
+	 * @param map is the matrix where the map is stock
+	 * @param x is the int that refer to the column
+	 * @param y is the int that refer to the line
+	 */
 	public void MonsterExplosed (String[][] map, int x, int y){ // if the monster explosed
 		
 		map[x][y] = "D";
