@@ -13,5 +13,5 @@ import java.sql.SQLException;
 public interface IModel {
 
 
-    String[] getAllExamples(int nbr) throws SQLException;
+    String[] getAllExamples(int nbr, String exemple) throws SQLException;
 }

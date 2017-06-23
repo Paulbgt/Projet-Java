@@ -32,11 +32,12 @@ public class Panneau extends JPanel implements ActionListener, KeyListener{
     ImageIcon img_monster2 = new ImageIcon("Pictures/monster2.gif");
     
     // Position des rochers dans une liste
-	int size_stone=0, size_diams=0, etat=0, first=0, Cmpt_Diams=0, PositionX=3, PositionY=3, Life=5;
+	int size_stone=0, size_diams=0, state=0, first=0, Cmpt_Diams=0, PositionX=3, PositionY=3, Life=5;
 
-
+	public String Nmap = "5";
 	
-	public Panneau(){
+	public Panneau(final String nb){
+		this.Nmap=nb;
 		addKeyListener(this);
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
@@ -52,7 +53,7 @@ public class Panneau extends JPanel implements ActionListener, KeyListener{
 		    ArrayList<Integer> Listx_monster = new ArrayList<Integer>();
 		    ArrayList<Integer> Listy_monster = new ArrayList<Integer>();
 			// Récupération du tbl
-			if(first==0){tbl=controller.start();first++;}
+			if(first==0){tbl=controller.start(Nmap);first++;}
 			// Convertion du tableau de string en tableau d'image
 			for(int y=0;y<30;y++){
 				for(int x=0; x<40; x++){
@@ -63,8 +64,8 @@ public class Panneau extends JPanel implements ActionListener, KeyListener{
 						else if(tbl[x][y]=="B"){tbl_image[x][y]=img_background;}
 						else if(tbl[x][y]=="D"){tbl_image[x][y]=img_diamond;Listx_diams.add(x);Listy_diams.add(y);}
 						else if(tbl[x][y]=="M"){tbl_image[x][y]=img_monster;Listx_monster.add(x);Listy_monster.add(y);}
-						else if(tbl[x][y]=="M2"){tbl_image[x][y]=img_monster2;}
-						else{;}
+						else if(tbl[x][y]=="M2"){tbl_image[x][y]=img_monster;}
+						else{tbl_image[x][y]=img_monster2;}
 					}
 				}
 			
@@ -105,7 +106,7 @@ public class Panneau extends JPanel implements ActionListener, KeyListener{
 			// Pousser les pierres 
 				// à droite
 			list=0;
-			if(etat==4){if(tbl[PositionX][PositionY]=="S" && tbl[PositionX+1][PositionY]=="B"){
+			if(state==4){if(tbl[PositionX][PositionY]=="S" && tbl[PositionX+1][PositionY]=="B"){
 				tbl[PositionX][PositionY]="B";
 				tbl[PositionX+1][PositionY]="S";
 				while(PositionX!=Listx_stone.get(list)){list++;}
@@ -114,7 +115,7 @@ public class Panneau extends JPanel implements ActionListener, KeyListener{
 			}
 				// à gauche
 			list=0;
-			if(etat==3){if(tbl[PositionX][PositionY]=="S" && tbl[PositionX-1][PositionY]=="B"){
+			if(state==3){if(tbl[PositionX][PositionY]=="S" && tbl[PositionX-1][PositionY]=="B"){
 				tbl[PositionX][PositionY]="B";
 				tbl[PositionX-1][PositionY]="S";
 				while(PositionX!=Listx_stone.get(list)){list++;}
@@ -124,10 +125,10 @@ public class Panneau extends JPanel implements ActionListener, KeyListener{
 				
 
 			//Detection de pierre et mur
-			if(etat==1){if(tbl[PositionX][PositionY]=="S" || tbl[PositionX][PositionY]=="#"){PositionY++;}}
-			if(etat==2){if(tbl[PositionX][PositionY]=="S" || tbl[PositionX][PositionY]=="#"){PositionY--;}}
-			if(etat==3){if(tbl[PositionX][PositionY]=="S" || tbl[PositionX][PositionY]=="#"){PositionX++;}}
-			if(etat==4){if(tbl[PositionX][PositionY]=="S" || tbl[PositionX][PositionY]=="#"){PositionX--;}}
+			if(state==1){if(tbl[PositionX][PositionY]=="S" || tbl[PositionX][PositionY]=="#"){PositionY++;}}
+			if(state==2){if(tbl[PositionX][PositionY]=="S" || tbl[PositionX][PositionY]=="#"){PositionY--;}}
+			if(state==3){if(tbl[PositionX][PositionY]=="S" || tbl[PositionX][PositionY]=="#"){PositionX++;}}
+			if(state==4){if(tbl[PositionX][PositionY]=="S" || tbl[PositionX][PositionY]=="#"){PositionX--;}}
 			
 
 			// Cascade
@@ -166,9 +167,9 @@ public class Panneau extends JPanel implements ActionListener, KeyListener{
 			}
 			
 			//Detection de diament
-			if(etat==1 || etat==2 || etat==3 || etat==4){if(tbl[PositionX][PositionY]=="D"){etat=0;Cmpt_Diams++;}}
+			if(state==1 || state==2 || state==3 || state==4){if(tbl[PositionX][PositionY]=="D"){state=0;Cmpt_Diams++;}}
 			// Perte de vie
-			if(etat==1 || etat==2 || etat==3 || etat==4){if(tbl[PositionX][PositionY]=="M" || tbl[PositionX][PositionY]=="S"){Life--;etat=0;}}
+			if(state==1 || state==2 || state==3 || state==4){if(tbl[PositionX][PositionY]=="M" || tbl[PositionX][PositionY]=="S"){Life--;state=0;}}
 
 
 			//chute de diaments
@@ -209,22 +210,22 @@ public class Panneau extends JPanel implements ActionListener, KeyListener{
 	public void Up(){ 	
 			tbl[PositionX][PositionY]="B";
 			PositionY--;
-			etat=1;
+			state=1;
 	}
 	public void down(){
 		tbl[PositionX][PositionY]="B";
 		PositionY++;
-		etat=2;
+		state=2;
 	}
 	public void left(){
 		tbl[PositionX][PositionY]="B";
 		PositionX--;
-		etat=3;
+		state=3;
 	}
 	public void right(){
 		tbl[PositionX][PositionY]="B";
 		PositionX++;
-		etat=4;
+		state=4;
 	}
 	
 

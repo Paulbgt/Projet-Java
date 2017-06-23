@@ -22,6 +22,7 @@ public abstract class ExampleDAO extends AbstractDAO {
     private static int    nameColumnIndex  = 2;
 
 
+
     /**
      * Gets the all examples.
      *
@@ -29,8 +30,11 @@ public abstract class ExampleDAO extends AbstractDAO {
      * @throws SQLException
      *             the SQL exception
      */
-    public static String[] getAllExamples(final int nbr) throws SQLException {
+    public static String[] getAllExamples(final int nbr, final String exemple) throws SQLException {
     	nameColumnIndex=nbr;
+
+    	sqlAllExamples = "{call findAllExamples"+exemple+"()}";
+    	
     	int x=0;
         final String[] examples = new String[40];
         final CallableStatement callStatement = prepareCall(sqlAllExamples);
