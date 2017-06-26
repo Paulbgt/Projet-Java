@@ -25,8 +25,8 @@ public class Rockford extends MotionElement{
      * constructor Rockford
      *
      */
-	 public Rockford(){
-				
+	 public Rockford(int Rockford_Hp){
+		 this.Rockford_Hp = Rockford_Hp;
 	}
 		
 	 
